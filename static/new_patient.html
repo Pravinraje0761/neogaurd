@@ -86,14 +86,14 @@
 <!-- Sex Selection (Segmented Control style) -->
 <div class="flex flex-col gap-base">
 <label class="font-label-md text-label-md text-on-surface font-semibold pl-1">Sex Assigned at Birth</label>
-<div class="flex bg-surface p-1 rounded-lg gap-1 shadow-[inset_0_1px_3px_rgba(0,0,0,0.04)]">
-<button class="flex-1 h-touch-target rounded-md bg-surface-container-lowest shadow-sm font-label-md text-label-md text-primary flex items-center justify-center gap-2 transition-all">
+<div class="flex bg-surface p-1 rounded-lg gap-1 shadow-[inset_0_1px_3px_rgba(0,0,0,0.04)]" id="sexControl">
+<button class="flex-1 h-touch-target rounded-md bg-surface-container-lowest shadow-sm font-label-md text-label-md text-primary flex items-center justify-center gap-2 transition-all" data-sex="Female" type="button">
 <span class="material-symbols-outlined text-[18px]">female</span> Female
                     </button>
-<button class="flex-1 h-touch-target rounded-md text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container transition-all">
+<button class="flex-1 h-touch-target rounded-md text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container transition-all" data-sex="Male" type="button">
 <span class="material-symbols-outlined text-[18px]">male</span> Male
                     </button>
-<button class="flex-1 h-touch-target rounded-md text-on-surface-variant font-label-md text-label-md flex items-center justify-center hover:bg-surface-container transition-all">
+<button class="flex-1 h-touch-target rounded-md text-on-surface-variant font-label-md text-label-md flex items-center justify-center hover:bg-surface-container transition-all" data-sex="Other" type="button">
                         Other
                     </button>
 </div>
@@ -102,7 +102,7 @@
 </div>
 <!-- Action Area -->
 <div class="flex flex-col gap-4 mt-4">
-<button class="w-full h-touch-target bg-primary text-on-primary rounded-lg font-label-md text-label-md shadow-md flex items-center justify-center gap-2 active:scale-[0.98] transition-transform" onclick="window.location.href='guided_capture.html'">
+<button class="w-full h-touch-target bg-primary text-on-primary rounded-lg font-label-md text-label-md shadow-md flex items-center justify-center gap-2 active:scale-[0.98] transition-transform" onclick="startScreening()">
             Continue to Screening
             <span class="material-symbols-outlined">arrow_forward</span>
 </button>
@@ -112,17 +112,75 @@
 </div>
 </div>
 <script>
-    // Simple script to animate the calculated age to draw attention
-    document.addEventListener('DOMContentLoaded', () => {
-        const ageElement = document.getElementById('calculatedAge');
-        if(ageElement) {
-            setTimeout(() => {
-                ageElement.style.transition = 'color 0.3s ease';
-                ageElement.classList.add('text-secondary');
-                setTimeout(() => {
-                    ageElement.classList.remove('text-secondary');
-                }, 600);
-            }, 1000);
-        }
+  var selectedSex = 'Female';
+
+  function formatAge(ms) {
+    if (isNaN(ms) || ms < 0) return '--';
+    var totalMin = Math.floor(ms / 60000);
+    var h = Math.floor(totalMin / 60);
+    var m = totalMin % 60;
+    return h + 'h ' + m + 'm';
+  }
+
+  function birthTimestamp() {
+    var d = document.getElementById('dobDate').value;
+    var t = document.getElementById('dobTime').value;
+    if (!d || !t) return null;
+    var dt = new Date(d + 'T' + t);
+    return isNaN(dt.getTime()) ? null : dt;
+  }
+
+  function recalcAge() {
+    var dt = birthTimestamp();
+    var el = document.getElementById('calculatedAge');
+    if (!dt) { el.textContent = '--'; return; }
+    el.textContent = formatAge(Date.now() - dt.getTime());
+  }
+
+  function selectSex(btn) {
+    selectedSex = btn.getAttribute('data-sex');
+    document.querySelectorAll('#sexControl button').forEach(function (b) {
+      var active = b === btn;
+      b.classList.toggle('bg-surface-container-lowest', active);
+      b.classList.toggle('shadow-sm', active);
+      b.classList.toggle('text-primary', active);
+      b.classList.toggle('text-on-surface-variant', !active);
     });
+  }
+
+  function startScreening() {
+    var dt = birthTimestamp();
+    var patient = {
+      patientId: 'NGH-842-B',
+      name: document.getElementById('babyName').value || null,
+      dobDate: document.getElementById('dobDate').value,
+      dobTime: document.getElementById('dobTime').value,
+      birthIso: dt ? dt.toISOString() : null,
+      gestationalAge: document.getElementById('gestationalAge').value,
+      birthWeightGrams: document.getElementById('birthWeight').value,
+      sex: selectedSex
+    };
+    sessionStorage.setItem('neoguard_patient', JSON.stringify(patient));
+    window.location.href = 'guided_capture.html';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#sexControl button').forEach(function (b) {
+      b.addEventListener('click', function () { selectSex(b); });
+    });
+    document.getElementById('dobDate').addEventListener('change', recalcAge);
+    document.getElementById('dobTime').addEventListener('change', recalcAge);
+
+    const ageElement = document.getElementById('calculatedAge');
+    if (ageElement) {
+      recalcAge();
+      setTimeout(() => {
+        ageElement.style.transition = 'color 0.3s ease';
+        ageElement.classList.add('text-secondary');
+        setTimeout(() => {
+          ageElement.classList.remove('text-secondary');
+        }, 600);
+      }, 1000);
+    }
+  });
 </script><div class="h-24"></div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary"><div class="flex justify-between items-center h-16 px-gutter"><a class="flex flex-col items-center justify-center w-14 h-full text-on-surface-variant transition-colors" data-path="home" href="home.html"><span class="material-symbols-outlined">home</span><span class="font-label-sm text-[10px]">Home</span></a><a aria-current="page" class="flex flex-col items-center justify-center w-14 h-full transition-colors text-primary" data-path="patients" href="patient_history.html"><span class="material-symbols-outlined">group</span><span class="font-label-sm text-[10px]">Patients</span></a><a class="relative -top-4 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform shadow-primary/30" data-path="screen" href="new_patient.html"><span class="material-symbols-outlined !text-[32px]">add_circle</span></a><a class="flex flex-col items-center justify-center w-14 h-full text-on-surface-variant transition-colors" data-path="alerts" href="#"><span class="material-symbols-outlined">notifications</span><span class="font-label-sm text-[10px]">Alerts</span></a><a class="flex flex-col items-center justify-center w-14 h-full text-on-surface-variant transition-colors" data-path="profile" href="#"><span class="material-symbols-outlined">account_circle</span><span class="font-label-sm text-[10px]">Profile</span></a></div></nav></body></html>

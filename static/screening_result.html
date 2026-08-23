@@ -9,10 +9,10 @@
 <!-- Patient Context -->
 <div class="flex items-center justify-between">
 <div>
-<h2 class="text-on-surface font-headline-md tracking-tight">NG-20481</h2>
+<h2 class="text-on-surface font-headline-md tracking-tight" id="patientIdText">NG-20481</h2>
 <p class="text-on-surface-variant font-body-md mt-1 flex items-center gap-2">
 <span class="material-symbols-outlined text-[16px]">schedule</span>
-          Age: 18h 42m
+<span id="patientAgeText">Age: 18h 42m</span>
         </p>
 </div>
 <div class="h-10 px-4 rounded-full bg-surface-container flex items-center justify-center">
@@ -90,8 +90,25 @@
     LOW:     { card: '#d7f4d9', icon: '#1e6b23', title: '#0a2b0c', text: '#1e6b23', label: 'LOW SCREENING RISK' }
   };
 
+  var patientRaw = sessionStorage.getItem('neoguard_patient');
+  if (patientRaw) {
+    try {
+      var patient = JSON.parse(patientRaw);
+      document.getElementById('patientIdText').textContent =
+        patient.patientId + (patient.name ? ' — ' + patient.name : '');
+      var ageText = '--';
+      if (patient.birthIso) {
+        var totalMin = Math.floor((Date.now() - new Date(patient.birthIso).getTime()) / 60000);
+        if (totalMin >= 0) {
+          ageText = Math.floor(totalMin / 60) + 'h ' + (totalMin % 60) + 'm';
+        }
+      }
+      document.getElementById('patientAgeText').textContent = 'Age: ' + ageText;
+    } catch (e) { /* keep static preview values */ }
+  }
+
   var raw = sessionStorage.getItem('neoguard_result');
-  if (!raw) return; // no live result yet (e.g. page opened directly) -- keep the static preview content
+  if (!raw) return; // no live analysis result yet (e.g. page opened directly) -- keep the static preview content
 
   var data;
   try { data = JSON.parse(raw); } catch (e) { return; }
