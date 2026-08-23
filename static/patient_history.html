@@ -1,0 +1,120 @@
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "outline-variant": "#bdc9c8", "error-container": "#ffdad6", "on-primary-fixed": "#002020", "on-tertiary-fixed-variant": "#404849", "tertiary-fixed-dim": "#bfc8c8", "outline": "#6e7979", "primary-fixed-dim": "#7ad5d7", "secondary": "#00696b", "surface": "#f8f9ff", "secondary-container": "#7af2f5", "primary": "#005f61", "surface-dim": "#cbdbf5", "background": "#f8f9ff", "on-primary": "#ffffff", "on-background": "#0b1c30", "inverse-on-surface": "#eaf1ff", "surface-tint": "#00696b", "inverse-primary": "#7ad5d7", "error": "#ba1a1a", "surface-variant": "#d3e4fe", "on-secondary-fixed-variant": "#004f51", "secondary-fixed-dim": "#5dd8db", "surface-container-highest": "#d3e4fe", "surface-container-lowest": "#ffffff", "on-primary-container": "#b3feff", "on-tertiary-fixed": "#151d1d", "on-secondary": "#ffffff", "primary-container": "#007a7c", "tertiary-fixed": "#dbe4e4", "primary-fixed": "#97f2f3", "surface-container-low": "#eff4ff", "secondary-fixed": "#7df5f8", "on-secondary-container": "#006e70", "tertiary": "#4e5757", "on-error": "#ffffff", "on-secondary-fixed": "#002021", "on-primary-fixed-variant": "#004f51", "inverse-surface": "#213145", "surface-container": "#e5eeff", "tertiary-container": "#666f6f", "surface-bright": "#f8f9ff", "on-tertiary-container": "#e9f2f2", "on-surface": "#0b1c30", "surface-container-high": "#dce9ff", "on-tertiary": "#ffffff", "on-surface-variant": "#3e4949", "on-error-container": "#93000a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "touch-target": "48px", "sm": "12px", "gutter": "16px", "container-margin": "20px", "base": "8px", "lg": "24px", "xs": "4px", "xl": "32px", "md": "16px" }, "fontFamily": { "headline-md": ["Inter"], "headline-lg-mobile": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "label-md": ["Inter"], "display-lg": ["Inter"], "label-sm": ["Inter"], "body-lg": ["Inter"] }, "fontSize": { "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }], "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } };</script><style>@layer base { .pt-safe { padding-top: env(safe-area-inset-top); } .pb-safe { padding-bottom: env(safe-area-inset-bottom); } }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background text-on-surface font-body-md"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-container-margin flex items-center gap-md"><button class="w-12 h-12 -ml-2 flex items-center justify-center text-on-surface active:bg-surface-container-high rounded-full transition-colors" onclick="history.back()"><span class="material-symbols-outlined">arrow_back</span></button><div class="flex-1 flex flex-col overflow-hidden"><span class="font-label-sm text-[10px] text-primary uppercase tracking-widest truncate">NeoGuard Clinical</span><h1 class="font-headline-md text-body-lg text-on-surface truncate tracking-tight">Patient Details</h1></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full pb-safe">
+<div class="px-container-margin py-md">
+<div class="flex items-center justify-between mb-sm">
+<div>
+<h2 class="font-headline-md text-on-surface">Patient History</h2>
+<p class="font-label-md text-on-surface-variant">Baby NG-20481 • Last 48 Hours</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">filter_list</span>
+</div>
+</div>
+</div>
+<div class="px-container-margin mb-xl">
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-sm">
+<div class="flex items-center justify-between mb-sm">
+<h3 class="font-label-sm text-on-surface-variant uppercase tracking-wider">Jaundice Risk Trend</h3>
+<span class="font-label-sm text-error bg-error-container/30 px-2 py-0.5 rounded-full">Elevated</span>
+</div>
+<div class="h-16 w-full relative">
+<svg class="w-full h-full overflow-visible preserve-aspect-ratio-none" viewbox="0 0 100 40">
+<path class="text-error" d="M0,35 Q20,35 30,30 T50,25 T70,10 T100,5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<circle class="fill-surface text-primary" cx="0" cy="35" r="2.5" stroke="currentColor" stroke-width="1.5"></circle>
+<circle class="fill-surface text-surface-tint" cx="50" cy="25" r="2.5" stroke="currentColor" stroke-width="1.5"></circle>
+<circle class="fill-error text-surface" cx="100" cy="5" r="3.5" stroke="currentColor" stroke-width="2"></circle>
+</svg>
+</div>
+<div class="flex justify-between mt-xs font-label-sm text-[10px] text-outline">
+<span>Admission</span>
+<span>18h</span>
+<span>28h</span>
+</div>
+</div>
+</div>
+<div class="px-container-margin flex-1 pb-24">
+<div class="relative">
+<div class="absolute left-[11px] top-2 bottom-0 w-[2px] bg-surface-container-highest rounded-full"></div>
+<div class="relative pl-lg mb-md">
+<div class="absolute left-0 top-[6px] w-6 h-6 rounded-full bg-error-container flex items-center justify-center shadow-sm z-10">
+<div class="w-2.5 h-2.5 rounded-full bg-error"></div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden active:shadow-md transition-shadow cursor-pointer">
+<div class="p-md">
+<div class="flex items-start justify-between mb-xs">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-error">High Risk</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant bg-surface-container-highest px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-primary">auto_awesome</span>
+                  AI Assessed
+                </span>
+</div>
+<span class="font-label-sm text-outline">28h • 14:30</span>
+</div>
+<p class="font-body-md text-on-surface mb-sm">Significant increase in scleral icterus detected. Bilirubin estimate elevated.</p>
+<div class="flex gap-sm">
+<div class="w-16 h-16 rounded-lg bg-surface-variant flex-shrink-0 relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up, high-resolution clinical photograph of a newborn baby's eye, specifically focusing on the sclera (white part of the eye) showing signs of jaundice (yellowing). The lighting is bright, even, and clinical, mimicking a hospital environment. The image is taken from a slightly angled perspective. The overall tone is objective and medical, strictly avoiding any emotional manipulation. The color palette emphasizes the contrast between the pale skin tones and the yellowing sclera, set against a neutral, sterile background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADaxwow_hq3PKxqUbAKfWGsPAURwWqt1-q_eIoWQqJvpt5z8DbUO_hHIFt6CeSDMGtJb7yDXsEgUHQUdvr8HOx7u2V0JCMJaK-M-2aEKEhp8PAc2gen0GCB1CibOSZRntbQPTXXnPGXkbOEHjfYh_ZHWM2AI3MThz-99PUnGxAnHALHeeQQJopsPi6gTh4kFiifjAG_Ck7a614qEsb5TPKgiF4uOgOuaeY8uSFI02R57-kIC9z5Cf6"/>
+</div>
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-[10px] text-on-surface-variant uppercase">Img Quality</span>
+<span class="font-label-sm text-on-surface">94%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[94%]"></div>
+</div>
+<button class="mt-2 text-primary font-label-md text-left flex items-center gap-1 active:opacity-70">
+                  View full analysis <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative pl-lg mb-md">
+<div class="absolute left-0 top-[6px] w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center shadow-sm z-10">
+<div class="w-2 h-2 rounded-full bg-surface-tint"></div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-md active:shadow-md transition-shadow cursor-pointer">
+<div class="flex items-start justify-between mb-xs">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-surface-tint">Monitor</span>
+</div>
+<span class="font-label-sm text-outline">18h • 04:15</span>
+</div>
+<p class="font-body-md text-on-surface text-sm mb-sm">Routine scan. Slight yellowing noted on forehead skin. No scleral involvement.</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-outline">photo_camera</span>
+<span class="font-label-sm text-on-surface-variant">2 Images captured (Avg. Qty: 88%)</span>
+</div>
+</div>
+</div>
+<div class="relative pl-lg">
+<div class="absolute left-[3px] top-[14px] bottom-0 w-[2px] bg-background"></div>
+<div class="absolute left-0 top-[6px] w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center shadow-sm z-10">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-md active:shadow-md transition-shadow cursor-pointer opacity-80">
+<div class="flex items-start justify-between mb-xs">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-primary">Low Risk</span>
+</div>
+<span class="font-label-sm text-outline">12h • 22:00</span>
+</div>
+<p class="font-body-md text-on-surface text-sm">Initial baseline screening post-admission. All parameters normal.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed bottom-6 right-6 z-40 pb-safe">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-xl shadow-lg flex items-center justify-center active:bg-surface-tint transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-surface" onclick="window.location.href='new_patient.html'">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div></main></body></html>
