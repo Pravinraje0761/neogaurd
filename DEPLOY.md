@@ -18,7 +18,6 @@ research tool only, not a diagnostic device.
 ## Run locally
 
 ```
-cd neoguard_app
 python -m venv .venv
 ./.venv/Scripts/pip install -r backend/requirements.txt      # .venv/bin/pip on macOS/Linux
 ./.venv/Scripts/python -m uvicorn backend.app:app --host 0.0.0.0 --port 8000
@@ -28,18 +27,17 @@ Open http://localhost:8000 — Guided capture tab, hit Capture, pick a photo.
 
 ## Deploy (any Docker host: Render / Railway / Fly.io / a VPS)
 
-Repo root for the build is `neoguard_app/` (has the `Dockerfile`).
+The repository root has the `Dockerfile`.
 
 ```
 docker build -t neoguard-app .
 docker run -p 8000:8000 neoguard-app
 ```
 
-- **Render**: New → Web Service → connect repo → root directory `neoguard_app` →
-  it auto-detects the Dockerfile → free tier works (sleeps when idle).
-- **Railway**: New Project → Deploy from repo → root directory `neoguard_app` →
+- **Render**: New → Web Service → connect repo → it auto-detects the Dockerfile → free tier works (sleeps when idle).
+- **Railway**: New Project → Deploy from repo →
   Dockerfile auto-detected.
-- **Fly.io**: `cd neoguard_app && fly launch` (it finds the Dockerfile), then `fly deploy`.
+- **Fly.io**: `fly launch` (it finds the Dockerfile), then `fly deploy`.
 
 No environment variables or secrets needed — the model file ships in the image.
 
@@ -49,5 +47,5 @@ No environment variables or secrets needed — the model file ships in the image
   bilirubin mg/dL — the hardware-calibrated path (`ai_prototype/src/pipeline.py` in the
   original zip) needs the physical color-reference attachment to produce that.
 - Skin-region detector can mislock onto incubator plastic when no face is in frame
-  (documented in the original `ai_prototype/README.md`).
+  (documented in the original prototype).
 - No auth/rate-limiting on `/api/analyze` — add before any public, non-demo deployment.
